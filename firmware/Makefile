@@ -3,7 +3,7 @@ UISP = avrdude -c stk500v1 -b 19200 -P /dev/ttyUSB0 -p m168 -F
 
 COMPILE = avr-g++ -Wall -Os -Iusbdrv -I. -mmcu=atmega168 #-DDEBUG_LEVEL=1
 
-OBJECTS = Diplomat.o
+OBJECTS = Diplomat.o Font.o
 # OBJECTS = main.o
 
 # symbolic targets:

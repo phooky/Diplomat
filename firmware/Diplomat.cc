@@ -7,6 +7,32 @@
 #include <stdint.h>
 
 #include "Configuration.hh"
+#include "Font.hh"
+
+#define PBUF_MAX 400
+int16_t printBuffer[PBUF_MAX];
+int16_t cursor = 0;
+
+void resetBuffer() {
+  cursor = 0;
+}
+
+void addCharToBuffer(char c) {
+  int16_t offset = charOffsets[c];
+  if (offset < 0) return;
+  int row = 1;
+  while (row) {
+    row = rowData[offset++];
+    printBuffer[cursor++] = row;
+  }
+}
+
+void addSpaceToBuffer(uint8_t len = 1) {
+  while (len > 0) {
+    len--;
+    printBuffer[cursor++] = 0;
+  }
+}
 
 void printSerial(char* pTxt) {
   while(*pTxt != '\0') {
