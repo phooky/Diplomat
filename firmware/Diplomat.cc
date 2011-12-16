@@ -34,6 +34,14 @@ void addSpaceToBuffer(uint8_t len = 1) {
   }
 }
 
+void printToBuffer(char* pTxt) {
+  resetBuffer();
+  while (*pTxt != '\0') {
+    addCharToBuffer(*pTxt++);
+    pTxt++;
+  }
+}
+
 void printSerial(char* pTxt) {
   while(*pTxt != '\0') {
     UCSR0A |= _BV(TXC0);
